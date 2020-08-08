@@ -1,0 +1,14 @@
+* {
+  box-sizing: border-box;
+  border: 1px solid black;
+}
+
+.parte-superior {
+  height: 100px;
+}
+
+.centrado-total {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
