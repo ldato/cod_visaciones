@@ -2,7 +2,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
-var mssql = require('mssql');
+var sql = require('mssql');
 
 
 var app = express();
@@ -12,15 +12,15 @@ app.use(bodyParser.json());
 
 // var puerto = nro_puerto;
 
-var con = mssql.connect({
+var con = sql.connect({
   /* host: "10.0.220.33",
   user: "sa",
   password: "Softland@1",
   database: "CAC_TST" */
   //host: "10.0.220.33",
-  userName: 'sa',
+  user: 'sa',
   password: 'Softland@1',
-  server: '10.0.220.33',
+  server: 'localhost',
 
   options: {
        port: 3001,
