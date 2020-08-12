@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 // var puerto = nro_puerto;
 
-var con = mysql.createConnection({
+var con = mssql.connect({
   /* host: "10.0.220.33",
   user: "sa",
   password: "Softland@1",
