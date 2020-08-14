@@ -19,17 +19,18 @@ var con = sql.connect({
   database: "CAC_TST" */
   //host: "10.0.220.33",
   user: 'sa',
-  password: 'Softland@1',
-  server: 'localhost',
+  password: 'acevedo535',
+  server: 'DESKTOP-0S2D3E7',
 
   options: {
        port: 3001,
-       database: 'CAC_TST',
-       instancename: 'TESTING'
+       database: 'prueba',
+       instancename: 'SQLEXPRESS',
+       
      }
 });
 
-con.connect(function (error) {
+sql.connect(function (error) {
   if (error) throw error;
   console.log("Conexión Establecida");
 
@@ -38,12 +39,12 @@ con.connect(function (error) {
     console.log("Programa conectado escuchando en el puerto 3001");
   });
 
-app.get('/FontVisac', function (req, res) {
+/* app.get('/FontVisac', function (req, res) {
   con.query(`SELECT * from FrontVisac`, function (error, result) {
     if (error) throw error;
     res.send(result);
   })
-});
+}); */
 
 
 });
