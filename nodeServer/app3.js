@@ -27,33 +27,37 @@ var dbConfig = {
     }
 };
 
-//GET API
+
+//GET API----------------------------------------------------------------
 app.get("/facturas", function(req , res){
-	//getEmployees()
   var dbConn = new sql.ConnectionPool(dbConfig);
   dbConn.connect().then(function () {
       var request = new sql.Request(dbConn);
-      request.query("select * from facturas").then(function (resp) {
+      request.query("select * from pagos where estado ='liberado';").then(function (resp) {
           console.log(resp.recordset);
           res.send(resp.recordset);
           dbConn.close();
 });
 });
 });
-/* function getEmployees() {
-    var dbConn = new sql.ConnectionPool(dbConfig);
-    dbConn.connect().then(function () {
-        var request = new sql.Request(dbConn);
-        request.query("select * from facturas").then(function (resp) {
-            console.log(resp);
-            res.send(resp);
-            dbConn.close();
+//FIN GET API---------------------------------------------------------
 
-        }).catch(function (err) {
-            console.log(err);
-            dbConn.close();
-        });
-    }).catch(function (err) {
-        console.log(err);
-    });
-} */
+
+// PUT API
+app.put("/pagos/:numero",function (req , res) {
+//  var numero = req.params.numero;
+//  var arrayNumero = [numero];
+  var dbConn = new sql.ConnectionPool(dbConfig);
+  dbConn.connect().then(function () {
+      var request = new sql.Request(dbConn);
+
+      var numero = req.params.numero;
+      var arrayNumero = [numero];
+      request.query("update pagos set estado='En proceso' where numero = "+numero).then(function (resp) {
+          console.log("Se ha cambio es el estado de la factura nro: "+arrayNumero[0]);
+          res.send("Se ha cambio es el estado de la factura nro: "+arrayNumero[0]);
+          dbConn.close();
+});
+});
+});
+//FIN PUT API
