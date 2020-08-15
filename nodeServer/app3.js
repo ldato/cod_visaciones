@@ -4,10 +4,17 @@ var sql = require("mssql");
 var cors = require('cors');
 var app = express();
 
-// Body Parser Middleware
-app.use(bodyParser.json());
-app.use(cors());
 
+app.options('*', cors());
+app.use(cors());
+app.use(bodyParser.json());
+
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 //Setting up server
  var server = app.listen(process.env.PORT || 3006, function () {
     var port = server.address().port;
@@ -42,6 +49,24 @@ app.get("/facturas", function(req , res){
 });
 //FIN GET API---------------------------------------------------------
 
+//GET API----------------------------------------------------------------
+app.get("/facturas/:numero", function (req , res) {
+  var dbConn = new sql.ConnectionPool(dbConfig);
+  dbConn.connect().then(function () {
+      var request = new sql.Request(dbConn);
+
+      var numero = req.params.numero;
+    //  var arrayNumero = [numero];
+      request.query("select * from pagos where numero = "+numero).then(function (resp) {
+          console.log(resp.recordset);
+          res.send(resp.recordset);
+          dbConn.close();
+});
+});
+});
+//FIN GET API---------------------------------------------------------
+
+
 
 // PUT API
 app.put("/pagos/:numero",function (req , res) {
@@ -52,12 +77,12 @@ app.put("/pagos/:numero",function (req , res) {
       var request = new sql.Request(dbConn);
 
       var numero = req.params.numero;
-      var arrayNumero = [numero];
+    //  var arrayNumero = [numero];
       request.query("update pagos set estado='En proceso' where numero = "+numero).then(function (resp) {
-          console.log("Se ha cambio es el estado de la factura nro: "+arrayNumero[0]);
-          res.send("Se ha cambio es el estado de la factura nro: "+arrayNumero[0]);
+          console.log("Se ha cambio es el estado de la factura nro: "+numero);
+          res.send("Se ha cambio es el estado de la factura nro: "+numero);
           dbConn.close();
 });
 });
 });
-//FIN PUT API
+//FIN PUT

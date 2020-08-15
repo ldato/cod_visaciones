@@ -12,3 +12,19 @@
   align-items: center;
   justify-content: center;
 }
+
+.margen-superior {
+  margin-top: 40px;
+}
+
+#titulo {
+  font-size: 35px;
+}
+
+#input-nro {
+  font-size: 30px;
+}
+
+#boton-consulta {
+
+}
