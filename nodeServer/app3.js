@@ -40,7 +40,7 @@ app.get("/facturas", function(req , res){
   var dbConn = new sql.ConnectionPool(dbConfig);
   dbConn.connect().then(function () {
       var request = new sql.Request(dbConn);
-      request.query("select * from pagos where estado ='liberado';").then(function (resp) {
+      request.query("select * from pagos1 where estado ='liberado';").then(function (resp) {
           console.log(resp.recordset);
           res.send(resp.recordset);
           dbConn.close();
@@ -57,7 +57,7 @@ app.get("/facturas/:numero", function (req , res) {
 
       var numero = req.params.numero;
     //  var arrayNumero = [numero];
-      request.query("select * from pagos where numero = "+numero).then(function (resp) {
+      request.query("select * from pagos1 where numero = "+numero).then(function (resp) {
           console.log(resp.recordset);
           res.send(resp.recordset);
           dbConn.close();
@@ -78,7 +78,7 @@ app.put("/pagos/:numero",function (req , res) {
 
       var numero = req.params.numero;
     //  var arrayNumero = [numero];
-      request.query("update pagos set estado='En proceso' where numero = "+numero).then(function (resp) {
+      request.query("update pagos1 set estado='Entregado' where numero = "+numero).then(function (resp) {
           console.log("Se ha cambio es el estado de la factura nro: "+numero);
           res.send("Se ha cambio es el estado de la factura nro: "+numero);
           dbConn.close();
