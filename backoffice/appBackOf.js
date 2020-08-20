@@ -7,6 +7,7 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
     $("#nombreEmp").empty();
     $("#estadoPago").empty();
     $("#estadoPago").removeClass('fondo-verde');
+    
     //$('#boton-entrega').removeClass('invisible');
     var numero = $('#input-nro').val();
     if (numero=="") {
