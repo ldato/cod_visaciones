@@ -1,0 +1,32 @@
+/* {
+  box-sizing: border-box;
+  border: 1px solid black;
+} */
+
+.parte-superior {
+  height: 100px;
+}
+
+.centrado-total {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.margen-superior {
+  margin-top: 40px;
+}
+
+#titulo {
+  font-size: 35px;
+}
+
+#input-nro {
+  font-size: 30px;
+}
+
+.fondo-verde {
+  background-color: #FF6A33;
+  color: white;
+  font-size: 20px;
+}

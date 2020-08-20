@@ -78,7 +78,7 @@ app.put("/pagos/:numero",function (req , res) {
 
       var numero = req.params.numero;
     //  var arrayNumero = [numero];
-      request.query("update pagos1 set estado='Entregado' where numero = "+numero).then(function (resp) {
+      request.query("update pagos1 set estado='Entregado', fecha_actualizacion = GETDATE() where numero = "+numero).then(function (resp) {
           console.log("Se ha cambio es el estado de la factura nro: "+numero);
           res.send("Se ha cambio es el estado de la factura nro: "+numero);
           dbConn.close();
@@ -86,3 +86,17 @@ app.put("/pagos/:numero",function (req , res) {
 });
 });
 //FIN PUT
+
+// PUT API
+app.put("/pagados/:factura", function (req , res) {
+   var dbConn = new sql.ConnectionPool(dbConfig);
+   dbConn.connect().then(function () {
+     var request = new sql.Request(dbConn);
+     var numero2 = req.params.factura;
+     request.query("update pagos1 set estado='Liberado' where numero = "+numero2).then(function (resp) {
+       console.log("Se ha cambio es el estado de la factura nro: "+numero2);
+       res.send("Se ha cambio es el estado de la factura nro: "+numero2);
+       dbConn.close();
+     })
+   })
+})

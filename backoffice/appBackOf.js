@@ -6,7 +6,6 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
     $("#nroFactura").empty();
     $("#nombreEmp").empty();
     $("#estadoPago").empty();
-    $("#fecha_entrega").empty();
     $("#estadoPago").removeClass('fondo-verde');
     //$('#boton-entrega').removeClass('invisible');
     var numero = $('#input-nro').val();
@@ -24,18 +23,15 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
           console.log(result[0]);
           nroFactura = result[0].numero;
           estado = result[0].estado;
-          nombre = result[0].nombre;
-          fecha_actualizacion = result[0].fecha_actualizacion;
-          if (estado== "Liberado") {
-            $('#boton-entrega').removeClass('invisible');
+          nombre = result[0].nombre
+          if (estado== "En Proceso") {
+            $('#boton-pago').removeClass('invisible');
           };
           $("#nroFactura").append(nroFactura);
           $("#nombreEmp").append(nombre);
           $("#estadoPago").append(estado);
-
           if (estado== "Entregado") {
             $("#estadoPago").addClass('fondo-verde');
-            $("#fecha_entrega").append(fecha_actualizacion);
           }
         }
       }
@@ -43,20 +39,20 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
 
   }); // FIN CLICK BOTON
 
-  $('#boton-entrega').on('click', function(e) { // INICIO BOTON ENTREGA
+  $('#boton-pago').on('click', function(e) { // INICIO BOTON ENTREGA
     e.preventDefault();
-    var numero1 = $("#input-nro").val();
+    var numero2 = $("#input-nro").val();
     $.ajax({
         type: "PUT",
-        url: "http://localhost:3006/pagos/"+numero1,
+        url: "http://localhost:3006/pagados/"+numero2,
         contentType : 'application/json',
 
         success: function(response) {
           alert(response);
           console.log(response);
-          $("#estadoPago").text("Entregado");
+          $("#estadoPago").text("Liberado");
           $("#estadoPago").addClass('fondo-verde');
-          $('#boton-entrega').addClass('invisible');
+          $('#boton-pago').addClass('invisible');
         }
 
     });
