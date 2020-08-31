@@ -90,18 +90,11 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
             $("#tabla1").append(`      <tr>  <td id="nroFactura">`+nroFactura+`</td>
             <td id="nombreEmp"`+nroFactura+`>`+nombre+`</td>
             <td id="estadoPago"`+nroFactura+`>`+estado+`</td>
-            <td>`+nroFactura+`
+            <td>
               <button type="button" class="btn btn-secondary boton-proceso" id=`+nroFactura+`>Procesar</button>
               <button type="button" class="btn btn-success boton-pago" id=`+nroFactura+`>Marcar Pagado</button>
             </td>     </tr>    `);
-
-            if (estado=="En proceso") {
-              //$(".boton-pago").removeClass('disabled');
-              $(".boton-proceso").attr('disabled', 'disabled');
-            } else if (estado == null) {
-              $(".boton-pago").attr('disabled', 'disabled');
-            }
-
+            
           }
          // nroFactura = result[0].numero;
           //estado = result[0].estado;

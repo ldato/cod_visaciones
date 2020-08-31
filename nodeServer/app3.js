@@ -40,10 +40,21 @@ app.get("/facturas", function(req , res){
   var dbConn = new sql.ConnectionPool(dbConfig);
   dbConn.connect().then(function () {
       var request = new sql.Request(dbConn);
-      request.query("select * from pagos1 where estado is null or estado = 'En proceso';").then(function (resp) {
-          console.log(resp.recordset);
-          res.send(resp.recordset);
+      request.query(`insert into prueba.dbo.pagos1 (numero, nombre, fecha_actualizacion)
+select vista.dbo.vista1.numero, vista.dbo.vista1.nombre, GETDATE() from vista.dbo.vista1
+left join prueba.dbo.pagos1 on (prueba.dbo.pagos1.numero=vista.dbo.vista1.numero)
+where prueba.dbo.pagos1.numero is null;`).then(function (resp) {
+      //    console.log(resp);
+      //    res.send(resp);
           dbConn.close();
+});
+});
+dbConn.connect().then(function () {
+    var request = new sql.Request(dbConn);
+    request.query(`select * from prueba.dbo.pagos1;`).then(function (resp) {
+        console.log(resp.recordset);
+        res.send(resp.recordset);
+        dbConn.close();
 });
 });
 });
