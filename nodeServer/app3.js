@@ -40,7 +40,7 @@ app.get("/facturas", function(req , res){
   var dbConn = new sql.ConnectionPool(dbConfig);
   dbConn.connect().then(function () {
       var request = new sql.Request(dbConn);
-      request.query("select * from pagos1 where estado ='liberado';").then(function (resp) {
+      request.query("select * from pagos1 where estado is null or estado = 'En proceso';").then(function (resp) {
           console.log(resp.recordset);
           res.send(resp.recordset);
           dbConn.close();
@@ -100,3 +100,4 @@ app.put("/pagados/:factura", function (req , res) {
      })
    })
 })
+// FIN PUT API
