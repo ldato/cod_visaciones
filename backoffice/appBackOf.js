@@ -92,9 +92,19 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
             <td id="estadoPago"`+nroFactura+`>`+estado+`</td>
             <td>
               <button type="button" class="btn btn-secondary boton-proceso" id=`+nroFactura+`>Procesar</button>
-              <button type="button" class="btn btn-success boton-pago" id=`+nroFactura+`>Marcar Pagado</button>
+              <button type="button" class="btn btn-success boton-pago" id=p`+nroFactura+`>Marcar Pagado</button>
             </td>     </tr>    `);
-            
+
+            if (estado==null) {
+              $("#p"+nroFactura).attr('disabled', 'disabled');
+            } else if (estado=="En proceso") {
+              $("#"+nroFactura).attr('disabled', 'disabled');
+            } else if (estado=="Liberado") {
+                $("#"+nroFactura).attr('disabled', 'disabled');
+                $("#p"+nroFactura).attr('disabled', 'disabled');
+            }
+
+
           }
          // nroFactura = result[0].numero;
           //estado = result[0].estado;
