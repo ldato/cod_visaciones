@@ -79,24 +79,28 @@ app.get("/facturas/:numero", function (req , res) {
 
 
 
-// PUT API
-app.put("/pagos/:numero",function (req , res) {
+// POST API
+app.post("/pagos/efectuados",function (req , res) {
 //  var numero = req.params.numero;
 //  var arrayNumero = [numero];
   var dbConn = new sql.ConnectionPool(dbConfig);
   dbConn.connect().then(function () {
       var request = new sql.Request(dbConn);
 
-      var numero = req.params.numero;
+      var cliente = req.body;
+      let numero = cliente.numero;
+      let nombre = cliente.nombre;
     //  var arrayNumero = [numero];
-      request.query("update pagos1 set estado='Entregado', fecha_actualizacion = GETDATE() where numero = "+numero).then(function (resp) {
+      request.input('numero3', numero);
+      request.input('nombre2', nombre);
+      request.query("insert into prueba.dbo.pagos1 (numero, nombre, estado, fecha_actualizacion) values (@numero3, @nombre2, 'Liberado', GETDATE());").then(function (resp) {
           console.log("Se ha cambio es el estado de la factura nro: "+numero);
           res.send("Se ha cambio es el estado de la factura nro: "+numero);
           dbConn.close();
 });
 });
 });
-//FIN PUT
+//FIN POST
 
 // PUT API
 app.put("/pagados/:factura", function (req , res) {

@@ -87,22 +87,16 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
             nroFactura = result[i].numero;
             estado = result[i].estado;
             nombre = result[i].nombre;
-            $("#tabla1").append(`      <tr>  <td id="nroFactura">`+nroFactura+`</td>
-            <td id="nombreEmp"`+nroFactura+`>`+nombre+`</td>
-            <td id="estadoPago"`+nroFactura+`>`+estado+`</td>
+            $("#tabla1").append(`      <tr>  <td id=nroFact`+nroFactura+`>`+nroFactura+`</td>
+            <td id=nomEmp`+nroFactura+`>`+nombre+`</td>
+            <td id=estPago`+nroFactura+`>`+estado+`</td>
             <td>
-              <button type="button" class="btn btn-secondary boton-proceso" id=`+nroFactura+`>Procesar</button>
-              <button type="button" class="btn btn-success boton-pago" id=p`+nroFactura+`>Marcar Pagado</button>
+              <button type="button" class="btn btn-success boton-pago" id=`+nroFactura+`>Marcar Pagado</button>
             </td>     </tr>    `);
 
-            if (estado==null) {
-              $("#p"+nroFactura).attr('disabled', 'disabled');
-            } else if (estado=="En proceso") {
+            if (estado=="Liberado" || estado=="Entregado") {
               $("#"+nroFactura).attr('disabled', 'disabled');
-            } else if (estado=="Liberado") {
-                $("#"+nroFactura).attr('disabled', 'disabled');
-                $("#p"+nroFactura).attr('disabled', 'disabled');
-            }
+            } ;
 
 
           }
@@ -152,7 +146,7 @@ $(document).on('click', '.boton-pago', function() {
   $(this).attr('disabled', 'disabled');
   console.log(numeroFact);
   $.ajax({
-      type: "PUT",
+      type: "POST",
       url: "http://localhost:3006/pagados/"+numeroFact,
       contentType : 'application/json',
 
