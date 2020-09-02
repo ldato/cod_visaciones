@@ -35,18 +35,17 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
         // if (estado== "Entregado") {
         //   $("#estadoPago").addClass('fondo-verde');
         //  }
-        $("#tabla1").append(`      <tr>  <td id="nroFactura">`+result[0].numero+`</td>
-        <td id="nombreEmp">`+result[0].nombre+`</td>
-        <td id="estadoPago">`+result[0].estado+`</td>
+        $("#tabla1").append(`      <tr>  <td id=nroFact`+nroFactura+`>`+nroFactura+`</td>
+        <td id=nomEmp`+nroFactura+`>`+nombre+`</td>
+        <td id=estPago`+nroFactura+`>`+estado+`</td>
         <td>
-          <button type="button" class="btn btn-secondary" id="boton-proceso">Procesar</button>
-          <button type="button" class="btn btn-success" id="boton-pago">Marcar Pagado</button>
+          <button type="button" class="btn btn-success boton-pago" id=`+nroFactura+`>Marcar Pagado</button>
         </td>     </tr>    `);
 
-        if (estado=="En proceso") {
-          $("#boton-pago").removeClass('disabled');
-          $("#boton-proceso").addClass('disabled');
-        }
+        if (estado=="Liberado" || estado=="Entregado") {
+          $("#"+nroFactura).attr('disabled', 'disabled');
+        } ;
+
         }
       }
     )

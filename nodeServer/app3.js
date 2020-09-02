@@ -71,7 +71,11 @@ app.get("/facturas/:numero", function (req , res) {
 
       var numero = req.params.numero;
     //  var arrayNumero = [numero];
-      request.query("select * from pagos1 where numero = "+numero).then(function (resp) {
+      request.input('numero4', numero)
+      request.query(`select numero, nombre, estado, fecha_actualizacion from (select *,
+    row_number() over (partition by numero order by fecha_actualizacion desc) as rn
+    from prueba.dbo.pagos1) t
+  	where t.rn = 1 and numero = @numero4 order by fecha_actualizacion desc;`).then(function (resp) {
           console.log(resp.recordset);
           res.send(resp.recordset);
           dbConn.close();
