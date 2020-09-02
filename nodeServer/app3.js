@@ -51,7 +51,10 @@ where prueba.dbo.pagos1.numero is null;`).then(function (resp) {
 });
 dbConn.connect().then(function () {
     var request = new sql.Request(dbConn);
-    request.query(`select * from prueba.dbo.pagos1;`).then(function (resp) {
+    request.query(`select numero, nombre, estado, fecha_actualizacion from (select *,
+  row_number() over (partition by numero order by fecha_actualizacion desc) as rn
+  from prueba.dbo.pagos1) t
+	where t.rn = 1 order by fecha_actualizacion desc;`).then(function (resp) {
         console.log(resp.recordset);
         res.send(resp.recordset);
         dbConn.close();

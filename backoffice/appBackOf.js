@@ -143,18 +143,25 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
 
 $(document).on('click', '.boton-pago', function() {
   var numeroFact = $(this).attr('id');
+  var nomEmp1 = $("#nomEmp"+numeroFact).text();
   $(this).attr('disabled', 'disabled');
   console.log(numeroFact);
+  console.log(nomEmp1);
   $.ajax({
       type: "POST",
-      url: "http://localhost:3006/pagados/"+numeroFact,
+      url: "http://localhost:3006/pagos/efectuados",
       contentType : 'application/json',
-
+      data: JSON.stringify(
+        {
+          "numero": numeroFact,
+          "nombre": nomEmp1
+        }
+      ),
       success: function(response) {
         alert(response);
         console.log(response);
-        $("#estadoPago"+numeroFact).text("Liberado");
-        $("#estadoPago"+numeroFact).addClass('fondo-verde');
+        $("#estPago"+numeroFact).text("Liberado");
+        $("#estPago"+numeroFact).addClass('fondo-verde');
       //  $('#'+numeroFact).addClass('invisible');
       }
 
