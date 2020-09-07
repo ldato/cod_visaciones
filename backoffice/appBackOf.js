@@ -56,6 +56,7 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
   $('#boton-ultimas10').on('click', function(e) {//INICIO CLICK BOTON
     e.preventDefault();
   //  $('#boton-entrega').addClass('invisible');
+    $("#input-nro").val("");
     $("#nroFactura").empty();
     $("#nombreEmp").empty();
     $("#estadoPago").empty();

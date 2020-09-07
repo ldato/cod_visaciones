@@ -2,7 +2,7 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
 
   $('#boton-consulta').on('click', function(e) {//INICIO CLICK BOTON
     e.preventDefault();
-    $('#boton-entrega').addClass('invisible');
+    //$('#boton-entrega').addClass('invisible');
     $("#nroFactura").empty();
     $("#nombreEmp").empty();
     $("#estadoPago").empty();
@@ -27,40 +27,57 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
           nombre = result[0].nombre;
           fecha_actualizacion = result[0].fecha_actualizacion;
           if (estado== "Liberado") {
-            $('#boton-entrega').removeClass('invisible');
+            //$('#boton-entrega').removeClass('invisible');
+
           };
           $("#nroFactura").append(nroFactura);
           $("#nombreEmp").append(nombre);
           $("#estadoPago").append(estado);
-
-          if (estado== "Entregado") {
-            $("#estadoPago").addClass('fondo-verde');
-            $("#fecha_entrega").append(fecha_actualizacion);
+          if (estado=="Liberado") {
+            //$("#estadoPago").addClass('fondo-verde');
+            //$("#fecha_entrega").append(fecha_actualizacion);
+            $("#boton-entrega").removeClass('invisible');
+            $("#boton-entrega").removeAttr('disabled');
+          } else {
+            $("#boton-entrega").attr('disabled', 'disabled');
           }
+          if (estado=="Entregado") {
+            $("#fecha_entrega").append(fecha_actualizacion);
+            $("#boton-entrega").addClass('invisible');
+          }
+
         }
       }
     )
-
+    $("#input-nro").val("");
   }); // FIN CLICK BOTON
 
-  $('#boton-entrega').on('click', function(e) { // INICIO BOTON ENTREGA
+  $(document).on('click', '#boton-entrega', function(e) { // INICIO BOTON ENTREGA
     e.preventDefault();
-    var numero1 = $("#input-nro").val();
+    let numero1 = $("#nroFactura").text();
+    let nombreCli = $("#nombreEmp").text();
     $.ajax({
-        type: "PUT",
-        url: "http://localhost:3006/pagos/"+numero1,
+        type: "POST",
+        url: "http://localhost:3006/facturas/entregar",
         contentType : 'application/json',
-
+        data: JSON.stringify(
+          {
+            "numero": numero1,
+            "nombre": nombreCli
+          }
+        ),
         success: function(response) {
           alert(response);
           console.log(response);
           $("#estadoPago").text("Entregado");
           $("#estadoPago").addClass('fondo-verde');
-          $('#boton-entrega').addClass('invisible');
+          $("#boton-entrega").attr('disabled', "disabled");
+          //$('#boton-entrega').addClass('invisible');
         }
 
     });
-
+    $("#input-nro").val("");
+    console.log(numero1, nombreCli);
   });// FIN BOTON ENTREGA
 
 

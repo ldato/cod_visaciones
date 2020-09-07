@@ -110,7 +110,7 @@ app.post("/pagos/efectuados",function (req , res) {
 //FIN POST
 
 // PUT API
-app.put("/pagados/:factura", function (req , res) {
+/* app.put("/pagados/:factura", function (req , res) {
    var dbConn = new sql.ConnectionPool(dbConfig);
    dbConn.connect().then(function () {
      var request = new sql.Request(dbConn);
@@ -121,5 +121,25 @@ app.put("/pagados/:factura", function (req , res) {
        dbConn.close();
      })
    })
-})
+}) */
 // FIN PUT API
+app.post("/facturas/entregar",function (req , res) {
+//  var numero = req.params.numero;
+//  var arrayNumero = [numero];
+  var dbConn = new sql.ConnectionPool(dbConfig);
+  dbConn.connect().then(function () {
+      var request = new sql.Request(dbConn);
+
+      var factura = req.body;
+      let factNro = factura.numero;
+      let nomCli = factura.nombre;
+    //  var arrayNumero = [numero];
+      request.input('numero4', factNro);
+      request.input('nombre3', nomCli);
+      request.query("insert into prueba.dbo.pagos1 (numero, nombre, estado, fecha_actualizacion) values (@numero4, @nombre3, 'Entregado', GETDATE());").then(function (resp) {
+          console.log("Se ha cambio es el estado de la factura nro: "+factNro);
+          res.send("Se ha cambio es el estado de la factura nro: "+factNro);
+          dbConn.close();
+});
+});
+});
