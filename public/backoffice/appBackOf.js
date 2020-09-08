@@ -49,7 +49,7 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
         }
       }
     )
-
+    $('#input-nro').val("");
   }); // FIN CLICK BOTON
 
   //--------------------------------------------------------------------------------------------------
