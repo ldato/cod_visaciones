@@ -21,7 +21,6 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
         method: "GET",
         dataType: "json",
         success: function  (result) {
-          //console.log(result[0].numero)
           console.log(result[0]);
           nroFactura = result[0].numero;
           estado = result[0].estado;
@@ -44,9 +43,6 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
           }
           if (estado=="Entregado") {
             $("#fecha_entrega").append(fecha_actualizacion);
-            $("#boton-entrega").addClass('invisible');
-          }
-          if (estado=="Pendinte de Pago") {
             $("#boton-entrega").addClass('invisible');
           }
 

@@ -2,7 +2,7 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
 
   $('#boton-consulta').on('click', function(e) {//INICIO CLICK BOTON
     e.preventDefault();
-    //$('#boton-entrega').addClass('invisible');
+    $('#boton-entrega').addClass('invisible');
     $("#nroFactura").empty();
     $("#nombreEmp").empty();
     $("#estadoPago").empty();
@@ -44,7 +44,7 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
 
         if (estado=="Liberado" || estado=="Entregado") {
           $("#"+nroFactura).attr('disabled', 'disabled');
-        };
+        } ;
 
         }
       }

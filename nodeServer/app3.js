@@ -3,6 +3,7 @@ var bodyParser = require("body-parser");
 var sql = require("mssql");
 var cors = require('cors');
 var app = express();
+var path = require("path");
 
 
 app.options('*', cors());
@@ -143,3 +144,8 @@ app.post("/facturas/entregar",function (req , res) {
 });
 });
 });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////ENTREGAR LOS HTML/////////////////////////////////////////////
+app.use(express.static('../public/visac'));
+app.use("/backoffice", express.static('../public/backoffice'));
