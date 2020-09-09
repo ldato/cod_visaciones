@@ -26,7 +26,7 @@ app.use(function(req, res, next) {
 var dbConfig = {
     user:  "sistvisac",
     password: "Cac.2020",
-    server: "SOFTLAND\TESTING",
+    server: "SOFTLAND\\TESTING",
     database: "CAC_TST",
     options: {
       port: 1433,
