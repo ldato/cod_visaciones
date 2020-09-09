@@ -158,7 +158,7 @@ $(document).on('click', '.boton-pago', function() {
   console.log(nomEmp1);
   $.ajax({
       type: "POST",
-      url: "http://http://10.0.220.55:3006/pagos/efectuados",
+      url: "http://10.0.220.55:3006/pagos/efectuados",
       contentType : 'application/json',
       data: JSON.stringify(
         {
