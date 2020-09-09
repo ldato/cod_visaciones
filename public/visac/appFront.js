@@ -22,9 +22,12 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
         dataType: "json",
         success: function  (result) {
           console.log(result[0]);
-          nroFactura = result[0].numero;
-          estado = result[0].estado;
-          nombre = result[0].nombre;
+          nroFactura = result[0].NroFact;
+          estado = result[0].Estado;
+          nombre = result[0].Nombre;
+          cantidad = result[0].CantCert;
+          importe = result.[0].ImpTotal;
+          fecha = result[0].Fecha;
           fecha_actualizacion = result[0].fecha_actualizacion;
           if (estado== "Liberado") {
             //$('#boton-entrega').removeClass('invisible');
@@ -33,6 +36,9 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
           $("#nroFactura").append(nroFactura);
           $("#nombreEmp").append(nombre);
           $("#estadoPago").append(estado);
+          $("#fechaFact").append(fecha);
+          $("#cantidad").append(cantidad);
+          $("#total1").append(importe);
           if (estado=="Liberado") {
             //$("#estadoPago").addClass('fondo-verde');
             //$("#fecha_entrega").append(fecha_actualizacion);
