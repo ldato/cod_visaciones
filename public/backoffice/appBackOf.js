@@ -41,9 +41,9 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
         //  }
         $("#tabla1").append(`      <tr>  <td id=nroFact`+nroFactura+`>`+nroFactura+`</td>
         <td id=nomEmp`+nroFactura+`>`+nombre+`</td>
-        <td>`+fecha+`</td>
-        <td>`+cantidad+`</td>
-        <td>`+total+`</td>
+        <td id=fecha`+nroFactura+`>`+fecha+`</td>
+        <td id=cant`+nroFactura+`>`+cantidad+`</td>
+        <td id=total`+nroFactura+`>`+total+`</td>
         <td>`+estado+`</td>
         <td>
           <button type="button" class="btn btn-success boton-pago" id=`+nroFactura+`>Marcar Pagado</button>
@@ -149,19 +149,23 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
   });*/ // FIN BOTON ENTREGA
 
 $(document).on('click', '.boton-pago', function() {
-  var numeroFact = $(this).attr('id');
-  var nomEmp1 = $("#nomEmp"+numeroFact).text();
+  let numeroFact = $(this).attr('id');
+  let cantidadx = $("#cant"+numeroFact).text();
+  let totalx = $("#total"+numeroFact).text();
+  let nomEmp1 = $("#nomEmp"+numeroFact).text();
   $(this).attr('disabled', 'disabled');
   console.log(numeroFact);
   console.log(nomEmp1);
   $.ajax({
       type: "POST",
-      url: "http://localhost:3006/pagos/efectuados",
+      url: "http://http://10.0.220.55:3006/pagos/efectuados",
       contentType : 'application/json',
       data: JSON.stringify(
         {
-          "numero": numeroFact,
-          "nombre": nomEmp1
+          "NroFact": numeroFact,
+          "Nombre": nomEmp1,
+          "CantCert": cantidadx,
+          "ImpTotal": totalx
         }
       ),
       success: function(response) {

@@ -95,13 +95,19 @@ app.post("/pagos/efectuados",function (req , res) {
   dbConn.connect().then(function () {
       var request = new sql.Request(dbConn);
 
-      var cliente = req.body;
-      let numero = cliente.numero;
-      let nombre = cliente.nombre;
+      var factura = req.body;
+      let factNro = factura.NroFact;
+      //let fecha = factura.Fecha;
+      let nomCli = factura.Nombre;
+      let cantIns = factura.CantCert;
+      let importeIn = factura.ImpTotal;
     //  var arrayNumero = [numero];
-      request.input('numero3', numero);
-      request.input('nombre2', nombre);
-      request.query("insert into prueba.dbo.pagos1 (numero, nombre, estado, fecha_actualizacion) values (@numero3, @nombre2, 'Liberado', GETDATE());").then(function (resp) {
+    request.input('numero4', factNro);
+    request.input('nombre3', nomCli);
+    //&request.input('fechaIn', fecha);
+    request.input('cantIn', cantIns);
+    request.input('totalIns', importeIn);
+      request.query("insert into CONT_VISAC.dbo.Trx_Visac1 (NroFact, Fecha, Nombre, CantCert, ImpTotal, Estado) values (@numero4, GETDATE(),  @nombre3, @cantIn, @totalIns, 'Liberado');").then(function (resp) {
           console.log("Se ha cambio es el estado de la factura nro: "+numero);
           res.send("Se ha cambio es el estado de la factura nro: "+numero);
           dbConn.close();
