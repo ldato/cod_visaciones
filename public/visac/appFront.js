@@ -65,14 +65,19 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
     e.preventDefault();
     let numero1 = $("#nroFactura").text();
     let nombreCli = $("#nombreEmp").text();
+    //let fecha1 = $("#fechaFact").text();
+    let cantidadIn = $("#cantidad").text();
+    let importeTot = $("#total1").text();
     $.ajax({
         type: "POST",
         url: "http://10.0.220.55:3006/facturas/entregar",
         contentType : 'application/json',
         data: JSON.stringify(
           {
-            "numero": numero1,
-            "nombre": nombreCli
+            "NroFact": numero1,
+            "Nombre": nombreCli,
+            "CantCert": cantidadIn,
+            "ImpTotal": importeTot
           }
         ),
         success: function(response) {

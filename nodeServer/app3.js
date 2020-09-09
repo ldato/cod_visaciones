@@ -140,7 +140,10 @@ app.post("/facturas/entregar",function (req , res) {
     //  var arrayNumero = [numero];
       request.input('numero4', factNro);
       request.input('nombre3', nomCli);
-      request.query("insert into CONT_VISAC.dbo.Trx_Visac1 (NroFact, Fecha, Nombre, CantCert, ImpTotal, Estado, fecha_actualizacion) values (@numero3, @fechaIn,  @nombre2, @cantIn, @totalIns, 'Liberado', GETDATE());").then(function (resp) {
+      //&request.input('fechaIn', fecha);
+      request.input('cantIn', cantIns);
+      request.input('totalIns', importeIn);
+      request.query("insert into CONT_VISAC.dbo.Trx_Visac1 (NroFact, Fecha, Nombre, CantCert, ImpTotal, Estado, fecha_actualizacion) values (@numero3, GETDATE(),  @nombre2, @cantIn, @totalIns, 'Liberado');").then(function (resp) {
           console.log("Se ha cambio es el estado de la factura nro: "+factNro);
           res.send("Se ha cambio es el estado de la factura nro: "+factNro);
           dbConn.close();
