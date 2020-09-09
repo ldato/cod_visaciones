@@ -17,7 +17,7 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
 
     $.ajax(
       {
-        url: "http://localhost:3006/facturas/"+numero,
+        url: "http://10.0.220.55:3006/facturas/"+numero,
         //headers: {"Authorization": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjY3OTc4OTEsInR5cGUiOiJleHRlcm5hbCIsInVzZXIiOiJsdWNpYW5vZGF0bzgyQGdtYWlsLmNvbSJ9.gbMWucBo7a3ck3gDFxDGD6qZPihZ1rovYhDSEjowAO1vUDy5kHyCXsbmqg7TV5D3wlNrZvmy8YPPfk_xunnieg"},
         method: "GET",
         dataType: "json",
