@@ -108,8 +108,8 @@ app.post("/pagos/efectuados",function (req , res) {
     request.input('cantIn', cantIns);
     request.input('totalIns', importeIn);
       request.query("insert into CONT_VISAC.dbo.Trx_Visac1 (NroFact, Fecha, Nombre, CantCert, ImpTotal, Estado) values (@numero4, GETDATE(),  @nombre3, @cantIn, @totalIns, 'Liberado');").then(function (resp) {
-          console.log("Se ha cambio es el estado de la factura nro: "+numero);
-          res.send("Se ha cambio es el estado de la factura nro: "+numero);
+          console.log("Se ha cambio es el estado de la factura nro: "+factNro);
+          res.send("Se ha cambio es el estado de la factura nro: "+factNro);
           dbConn.close();
 });
 });
