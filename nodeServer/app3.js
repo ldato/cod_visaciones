@@ -24,13 +24,13 @@ app.use(function(req, res, next) {
 
  //Initializing connection string
 var dbConfig = {
-    user:  "sa",
-    password: "acevedo535",
-    server: "DESKTOP-0S2D3E7",
-    database: "prueba",
+    user:  "sistvisac",
+    password: "Cac.2020",
+    server: "SOFTLAND\TESTING",
+    database: "CAC_TST",
     options: {
       port: 1433,
-      instancename: 'SQLEXPRESS',
+    //  instancename: 'SQLEXPRESS',
       encrypt: false
     }
 };
@@ -73,10 +73,10 @@ app.get("/facturas/:numero", function (req , res) {
       var numero = req.params.numero;
     //  var arrayNumero = [numero];
       request.input('numero4', numero)
-      request.query(`select numero, nombre, estado, fecha_actualizacion from (select *,
-    row_number() over (partition by numero order by fecha_actualizacion desc) as rn
-    from prueba.dbo.pagos1) t
-  	where t.rn = 1 and numero = @numero4 order by fecha_actualizacion desc;`).then(function (resp) {
+      request.query(`select NroFact, Fecha, Nombre, CantCert, ImpTotal, Estado from (select *,
+    row_number() over (partition by Nrofact order by Fecha desc) as rn
+    from ONT_VISAC.dbo.Trx_Visac1) t
+  	where t.rn = 1 and NroFact = @numero4 order by Fecha desc;`).then(function (resp) {
           console.log(resp.recordset);
           res.send(resp.recordset);
           dbConn.close();
