@@ -75,7 +75,7 @@ app.get("/facturas/:numero", function (req , res) {
       request.input('numero4', numero)
       request.query(`select NroFact, Fecha, Nombre, CantCert, ImpTotal, Estado from (select *,
     row_number() over (partition by Nrofact order by Fecha desc) as rn
-    from ONT_VISAC.dbo.Trx_Visac1) t
+    from CONT_VISAC.dbo.Trx_Visac1) t
   	where t.rn = 1 and NroFact = @numero4 order by Fecha desc;`).then(function (resp) {
           console.log(resp.recordset);
           res.send(resp.recordset);
