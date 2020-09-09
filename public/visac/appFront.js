@@ -67,7 +67,7 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
     let nombreCli = $("#nombreEmp").text();
     $.ajax({
         type: "POST",
-        url: "http://localhost:3006/facturas/entregar",
+        url: "http://10.0.220.55:3006/facturas/entregar",
         contentType : 'application/json',
         data: JSON.stringify(
           {
