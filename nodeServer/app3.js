@@ -132,12 +132,15 @@ app.post("/facturas/entregar",function (req , res) {
       var request = new sql.Request(dbConn);
 
       var factura = req.body;
-      let factNro = factura.numero;
-      let nomCli = factura.nombre;
+      let factNro = factura.NroFact;
+      let fecha = factura.Fecha;
+      let nomCli = factura.Nombre;
+      let cantIns = factura.CantCert;
+      let importeIn = factura.ImpTotal;
     //  var arrayNumero = [numero];
       request.input('numero4', factNro);
       request.input('nombre3', nomCli);
-      request.query("insert into prueba.dbo.pagos1 (numero, nombre, estado, fecha_actualizacion) values (@numero4, @nombre3, 'Entregado', GETDATE());").then(function (resp) {
+      request.query("insert into CONT_VISAC.dbo.Trx_Visac1 (NroFact, Fecha, Nombre, CantCert, ImpTotal, Estado, fecha_actualizacion) values (@numero3, @fechaIn,  @nombre2, @cantIn, @totalIns, 'Liberado', GETDATE());").then(function (resp) {
           console.log("Se ha cambio es el estado de la factura nro: "+factNro);
           res.send("Se ha cambio es el estado de la factura nro: "+factNro);
           dbConn.close();
