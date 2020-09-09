@@ -23,9 +23,13 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
         dataType: "json",
         success: function  (result) {
           console.log(result[0]);
-          nroFactura = result[0].numero;
-          estado = result[0].estado;
-          nombre = result[0].nombre
+          nroFactura = result[0].NroFact;
+          fecha = result[0].Fecha;
+          nombre = result[0].Nombre;
+          cantidad = result[0].CantCert;
+          total = result[0].ImpTotal;
+          estado = result[0].Estado;
+
           if (estado== "En Proceso") {
             $('#boton-pago').removeClass('invisible');
           };
@@ -37,7 +41,10 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
         //  }
         $("#tabla1").append(`      <tr>  <td id=nroFact`+nroFactura+`>`+nroFactura+`</td>
         <td id=nomEmp`+nroFactura+`>`+nombre+`</td>
-        <td id=estPago`+nroFactura+`>`+estado+`</td>
+        <td>`+fecha+`</td>
+        <td>`+cantidad+`</td>
+        <td>`+total+`</td>
+        <td>`+estado+`</td>
         <td>
           <button type="button" class="btn btn-success boton-pago" id=`+nroFactura+`>Marcar Pagado</button>
         </td>     </tr>    `);
