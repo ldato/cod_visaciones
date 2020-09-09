@@ -26,7 +26,7 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
           estado = result[0].Estado;
           nombre = result[0].Nombre;
           cantidad = result[0].CantCert;
-          importe = result.[0].ImpTotal;
+          importe = result[0].ImpTotal;
           fecha = result[0].Fecha;
           fecha_actualizacion = result[0].fecha_actualizacion;
           if (estado== "Liberado") {
