@@ -133,7 +133,7 @@ app.post("/facturas/entregar",function (req , res) {
 
       var factura = req.body;
       let factNro = factura.NroFact;
-      let fecha = factura.Fecha;
+      //let fecha = factura.Fecha;
       let nomCli = factura.Nombre;
       let cantIns = factura.CantCert;
       let importeIn = factura.ImpTotal;
@@ -143,7 +143,7 @@ app.post("/facturas/entregar",function (req , res) {
       //&request.input('fechaIn', fecha);
       request.input('cantIn', cantIns);
       request.input('totalIns', importeIn);
-      request.query("insert into CONT_VISAC.dbo.Trx_Visac1 (NroFact, Fecha, Nombre, CantCert, ImpTotal, Estado, fecha_actualizacion) values (@numero3, GETDATE(),  @nombre2, @cantIn, @totalIns, 'Liberado');").then(function (resp) {
+      request.query("insert into CONT_VISAC.dbo.Trx_Visac1 (NroFact, Fecha, Nombre, CantCert, ImpTotal, Estado) values (@numero3, GETDATE(),  @nombre2, @cantIn, @totalIns, 'Entregado');").then(function (resp) {
           console.log("Se ha cambio es el estado de la factura nro: "+factNro);
           res.send("Se ha cambio es el estado de la factura nro: "+factNro);
           dbConn.close();
