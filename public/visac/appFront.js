@@ -6,6 +6,9 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
     $("#nroFactura").empty();
     $("#nombreEmp").empty();
     $("#estadoPago").empty();
+    $("#fechaFact").empty();
+    $("#cantidad").empty();
+    $("#total1").empty();
     $("#fecha_entrega").empty();
     $("#estadoPago").removeClass('fondo-verde');
     //$('#boton-entrega').removeClass('invisible');
