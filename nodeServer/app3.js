@@ -41,10 +41,30 @@ app.get("/facturas", function(req , res){
   var dbConn = new sql.ConnectionPool(dbConfig);
   dbConn.connect().then(function () {
       var request = new sql.Request(dbConn);
-      request.query(`insert into prueba.dbo.pagos1 (numero, nombre, fecha_actualizacion)
-select vista.dbo.vista1.numero, vista.dbo.vista1.nombre, GETDATE() from vista.dbo.vista1
-left join prueba.dbo.pagos1 on (prueba.dbo.pagos1.numero=vista.dbo.vista1.numero)
-where prueba.dbo.pagos1.numero is null;`).then(function (resp) {
+      request.query(`INSERT INTO CONT_VISAC.dbo.Trx_Visac1 (NroFact, Fecha, Nombre, CantCert, ImpTotal)
+      SELECT DISTINCT top 2 C.VTRMVH_NROFOR, VTRMVH_FECMOD,E.VTMCLH_NOMBRE,
+      CAST(SUM(VTRMVI_CANTID) AS INT) AS cantXprod,
+      CAST(SUM (VTRMVI_PRENAC * VTRMVI_CANTID) AS INT) AS totXprod
+      FROM VTRMVI A
+      INNER JOIN STMPDH B
+      ON A.VTRMVI_ARTCOD = B.STMPDH_ARTCOD
+      INNER JOIN VTRMVH C
+      ON C.VTRMVH_NROFOR = A.VTRMVI_NROFOR
+      INNER JOIN FCRMVI D
+      ON C.VTRMVH_NROFOR = D.FCRMVI_NROFOR
+      INNER JOIN VTMCLH E
+      ON E.VTMCLH_NROCTA = C.VTRMVH_NROCTA
+      left join CONT_VISAC.dbo.Trx_Visac1 on (CONT_VISAC.dbo.Trx_Visac1.NroFact = C.VTRMVH_NROFOR)
+      WHERE VTRMVI_CODEMP = 'CAC01'
+      AND VTRMVI_CODFOR IN ('FC0002', 'FC0003')
+      AND VTRMVI_TIPPRO =  'VISAC'
+      AND VTRMVH_SUCURS=0002
+      AND VTRMVH_FCHMOV >= DATEADD(day, -15, getdate())
+      AND C.VTRMVH_CODFOR = A.VTRMVI_CODFOR
+      AND CONT_VISAC.dbo.Trx_Visac1.NroFact is null
+      --AND USR_FCRMVI_NROCER !=''
+      GROUP BY  C.VTRMVH_NROFOR, VTRMVH_FECMOD,E.VTMCLH_NOMBRE, STMPDH_DESCRP,VTRMVI_CANTID
+      ORDER BY VTRMVH_NROFOR DESC;`).then(function (resp) {
       //    console.log(resp);
       //    res.send(resp);
           dbConn.close();
@@ -52,10 +72,10 @@ where prueba.dbo.pagos1.numero is null;`).then(function (resp) {
 });
 dbConn.connect().then(function () {
     var request = new sql.Request(dbConn);
-    request.query(`select numero, nombre, estado, fecha_actualizacion from (select *,
-  row_number() over (partition by numero order by fecha_actualizacion desc) as rn
-  from prueba.dbo.pagos1) t
-	where t.rn = 1 order by fecha_actualizacion desc;`).then(function (resp) {
+    request.query(`select top 10 NroFact, Fecha, Nombre, CantCert, ImpTotal, Estado from (select *,
+      row_number() over (partition by Nrofact order by Fecha desc) as rn
+      from CONT_VISAC.dbo.Trx_Visac1) t
+      where t.rn = 1 order by Fecha desc;`).then(function (resp) {
         console.log(resp.recordset);
         res.send(resp.recordset);
         dbConn.close();
