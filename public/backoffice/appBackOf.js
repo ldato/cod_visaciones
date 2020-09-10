@@ -30,7 +30,7 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
           total = result[0].ImpTotal;
           estado = result[0].Estado;
 
-          if (estado== "En Proceso") {
+          if (estado== "Pendiente de Pago") {
             $('#boton-pago').removeClass('invisible');
           };
         // $("#nroFactura").append(nroFactura);
@@ -83,23 +83,30 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
 
     $.ajax(
       {
-        url: "http://localhost:3006/facturas",
+        url: "http://10.0.220.55:3006/facturas",
         //headers: {"Authorization": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjY3OTc4OTEsInR5cGUiOiJleHRlcm5hbCIsInVzZXIiOiJsdWNpYW5vZGF0bzgyQGdtYWlsLmNvbSJ9.gbMWucBo7a3ck3gDFxDGD6qZPihZ1rovYhDSEjowAO1vUDy5kHyCXsbmqg7TV5D3wlNrZvmy8YPPfk_xunnieg"},
         method: "GET",
         dataType: "json",
         success: function  (result) {
-          console.log(result);
+          //console.log(result);
           for (var i = 0; i < result.length; i++) {
             //result[i]
-            nroFactura = result[i].numero;
-            estado = result[i].estado;
-            nombre = result[i].nombre;
-            $("#tabla1").append(`      <tr>  <td id=nroFact`+nroFactura+`>`+nroFactura+`</td>
-            <td id=nomEmp`+nroFactura+`>`+nombre+`</td>
-            <td id=estPago`+nroFactura+`>`+estado+`</td>
-            <td>
-              <button type="button" class="btn btn-success boton-pago" id=`+nroFactura+`>Marcar Pagado</button>
-            </td>     </tr>    `);
+          console.log(result[i]);
+          nroFactura = result[i].NroFact;
+          fecha = result[i].Fecha;
+          nombre = result[i].Nombre;
+          cantidad = result[i].CantCert;
+          total = result[i].ImpTotal;
+          estado = result[i].Estado;
+          $("#tabla1").append(`      <tr>  <td id=nroFact`+nroFactura+`>`+nroFactura+`</td>
+          <td id=nomEmp`+nroFactura+`>`+nombre+`</td>
+          <td id=fecha`+nroFactura+`>`+fecha+`</td>
+          <td id=cant`+nroFactura+`>`+cantidad+`</td>
+          <td id=total`+nroFactura+`>`+total+`</td>
+          <td>`+estado+`</td>
+          <td>
+            <button type="button" class="btn btn-success boton-pago" id=`+nroFactura+`>Marcar Pagado</button>
+          </td>     </tr>    `);
 
             if (estado=="Liberado" || estado=="Entregado") {
               $("#"+nroFactura).attr('disabled', 'disabled');
