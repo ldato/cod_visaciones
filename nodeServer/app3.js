@@ -72,7 +72,7 @@ app.get("/facturas", function(req , res){
 });
 dbConn.connect().then(function () {
     var request = new sql.Request(dbConn);
-    request.query(`select top 10 NroFact, Fecha, Nombre, CantCert, ImpTotal, Estado from (select *,
+    request.query(`select top 15 NroFact, Fecha, Nombre, CantCert, ImpTotal, Estado from (select *,
       row_number() over (partition by Nrofact order by Fecha desc) as rn
       from CONT_VISAC.dbo.Trx_Visac1) t
       where t.rn = 1 order by Fecha desc;`).then(function (resp) {
