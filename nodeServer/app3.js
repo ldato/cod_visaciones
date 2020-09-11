@@ -42,7 +42,7 @@ app.get("/facturas", function(req , res){
   dbConn.connect().then(function () {
       var request = new sql.Request(dbConn);
       request.query(`INSERT INTO CONT_VISAC.dbo.Trx_Visac1 (NroFact, Fecha, Nombre, CantCert, ImpTotal)
-      SELECT DISTINCT top 2 C.VTRMVH_NROFOR, VTRMVH_FECMOD,E.VTMCLH_NOMBRE,
+      SELECT DISTINCT C.VTRMVH_NROFOR, VTRMVH_FECMOD,E.VTMCLH_NOMBRE,
       CAST(SUM(VTRMVI_CANTID) AS INT) AS cantXprod,
       CAST(SUM (VTRMVI_PRENAC * VTRMVI_CANTID) AS INT) AS totXprod
       FROM VTRMVI A
