@@ -44,7 +44,7 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
         <td id=fecha`+nroFactura+`>`+fecha+`</td>
         <td id=cant`+nroFactura+`>`+cantidad+`</td>
         <td id=total`+nroFactura+`>`+total+`</td>
-        <td>`+estado+`</td>
+        <td id=est-`+nroFactura+`>`+estado+`</td>
         <td>
           <button type="button" class="btn btn-success boton-pago" id=`+nroFactura+`>Marcar Pagado</button>
         </td>     </tr>    `);
