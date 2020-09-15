@@ -42,29 +42,29 @@ app.get("/facturas", function(req , res){
   dbConn.connect().then(function () {
       var request = new sql.Request(dbConn);
       request.query(`INSERT INTO CONT_VISAC.dbo.Trx_Visac1 (NroFact, Fecha, Nombre, CantCert, ImpTotal)
-      SELECT DISTINCT C.VTRMVH_NROFOR, VTRMVH_FECMOD,E.VTMCLH_NOMBRE,
+      SELECT  C.VTRMVH_NROFOR, FORMAT(VTRMVH_FECMOD, 'dd/MM/yyyy HH:mm:ss')AS FECHA , E.VTMCLH_NOMBRE,
       CAST(SUM(VTRMVI_CANTID) AS INT) AS cantXprod,
       CAST(SUM (VTRMVI_PRENAC * VTRMVI_CANTID) AS INT) AS totXprod
-      FROM VTRMVI A
-      INNER JOIN STMPDH B
-      ON A.VTRMVI_ARTCOD = B.STMPDH_ARTCOD
-      INNER JOIN VTRMVH C
-      ON C.VTRMVH_NROFOR = A.VTRMVI_NROFOR
-      INNER JOIN FCRMVI D
-      ON C.VTRMVH_NROFOR = D.FCRMVI_NROFOR
-      INNER JOIN VTMCLH E
-      ON E.VTMCLH_NROCTA = C.VTRMVH_NROCTA
-      left join CONT_VISAC.dbo.Trx_Visac1 on (CONT_VISAC.dbo.Trx_Visac1.NroFact = C.VTRMVH_NROFOR)
-      WHERE VTRMVI_CODEMP = 'CAC01'
-      AND VTRMVI_CODFOR IN ('FC0002', 'FC0003')
-      AND VTRMVI_TIPPRO =  'VISAC'
-      AND VTRMVH_SUCURS=0002
-      AND VTRMVH_FCHMOV >= DATEADD(day, -15, getdate())
-      AND C.VTRMVH_CODFOR = A.VTRMVI_CODFOR
-      AND CONT_VISAC.dbo.Trx_Visac1.NroFact is null
-      --AND USR_FCRMVI_NROCER !=''
-      GROUP BY  C.VTRMVH_NROFOR, VTRMVH_FECMOD,E.VTMCLH_NOMBRE, STMPDH_DESCRP,VTRMVI_CANTID
-      ORDER BY VTRMVH_NROFOR DESC;`).then(function (resp) {
+            FROM VTRMVI A
+            INNER JOIN STMPDH B
+            ON A.VTRMVI_ARTCOD = B.STMPDH_ARTCOD
+            INNER JOIN VTRMVH C
+            ON C.VTRMVH_NROFOR = A.VTRMVI_NROFOR
+            INNER JOIN FCRMVI D
+            ON C.VTRMVH_NROFOR = D.FCRMVI_NROFOR
+            INNER JOIN VTMCLH E
+            ON E.VTMCLH_NROCTA = C.VTRMVH_NROCTA
+            left join CONT_VISAC.dbo.Trx_Visac1 on (CONT_VISAC.dbo.Trx_Visac1.NroFact = C.VTRMVH_NROFOR)
+            WHERE VTRMVI_CODEMP = 'CAC01'
+            AND VTRMVI_CODFOR IN ('FC0002', 'FC0003')
+            AND VTRMVI_TIPPRO =  'VISAC'
+            AND VTRMVH_SUCURS=0002
+            AND VTRMVH_FCHMOV >= DATEADD(day, -15, getdate())
+            AND C.VTRMVH_CODFOR = A.VTRMVI_CODFOR
+            AND CONT_VISAC.dbo.Trx_Visac1.NroFact is null
+            --AND USR_FCRMVI_NROCER !=''
+            GROUP BY  C.VTRMVH_NROFOR, VTRMVH_FECMOD,E.VTMCLH_NOMBRE, STMPDH_DESCRP,VTRMVI_CANTID
+            ORDER BY VTRMVH_NROFOR DESC;`).then(function (resp) {
       //    console.log(resp);
       //    res.send(resp);
           dbConn.close();
