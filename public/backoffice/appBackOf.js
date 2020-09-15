@@ -183,7 +183,7 @@ $(document).on('click', '.boton-pago', function() {
         console.log(response);
         $("#estPago"+numeroFact).text("Liberado");
         $("#estPago"+numeroFact).addClass('fondo-verde');
-        $(this).attr('disabled', 'disabled');
+        $("#"+numeroFact).attr('disabled', 'disabled');
       //  $('#'+numeroFact).addClass('invisible');
       }
 
