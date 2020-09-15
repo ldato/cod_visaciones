@@ -27,7 +27,7 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
           fecha = result[0].Fecha;
           nombre = result[0].Nombre;
           cantidad = result[0].CantCert;
-          total = "$"+result[0].ImpTotal;
+          total = result[0].ImpTotal;
           estado = result[0].Estado;
 
           if (estado== "Pendiente de Pago") {
@@ -96,7 +96,7 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
           fecha = result[i].Fecha;
           nombre = result[i].Nombre;
           cantidad = result[i].CantCert;
-          total = "$"+result[i].ImpTotal;
+          total = result[i].ImpTotal;
           estado = result[i].Estado;
           $("#tabla1").append(`      <tr>  <td id=nroFact`+nroFactura+`>`+nroFactura+`</td>
           <td id=nomEmp`+nroFactura+`>`+nombre+`</td>
