@@ -175,6 +175,9 @@ $(document).on('click', '.boton-pago', function() {
           "ImpTotal": totalx
         }
       ),
+      beforeSend:function(){
+        return confirm("Esta seguro de marcar pagado la factura nro: "+numeroFact);
+     },
       success: function(response) {
         alert(response);
         console.log(response);
