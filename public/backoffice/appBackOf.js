@@ -27,7 +27,7 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
           fecha = result[0].Fecha;
           nombre = result[0].Nombre;
           cantidad = result[0].CantCert;
-          total = result[0].ImpTotal;
+          total = "$"+result[0].ImpTotal;
           estado = result[0].Estado;
 
           if (estado== "Pendiente de Pago") {
@@ -43,7 +43,7 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
         <td id=nomEmp`+nroFactura+`>`+nombre+`</td>
         <td id=fecha`+nroFactura+`>`+fecha+`</td>
         <td id=cant`+nroFactura+`>`+cantidad+`</td>
-        <td id=total`+nroFactura+`>`+total+`</td>
+        <td id=total`+nroFactura+`>$`+total+`</td>
         <td>`+estado+`</td>
         <td>
           <button type="button" class="btn btn-success boton-pago" id=`+nroFactura+`>Marcar Pagado</button>
@@ -102,7 +102,7 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
           <td id=nomEmp`+nroFactura+`>`+nombre+`</td>
           <td id=fecha`+nroFactura+`>`+fecha+`</td>
           <td id=cant`+nroFactura+`>`+cantidad+`</td>
-          <td id=total`+nroFactura+`>`+total+`</td>
+          <td id=total`+nroFactura+`>$`+total+`</td>
           <td>`+estado+`</td>
           <td>
             <button type="button" class="btn btn-success boton-pago" id=`+nroFactura+`>Marcar Pagado</button>
