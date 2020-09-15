@@ -103,7 +103,7 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
           <td id=fecha`+nroFactura+`>`+fecha+`</td>
           <td id=cant`+nroFactura+`>`+cantidad+`</td>
           <td id=total`+nroFactura+`>`+total+`</td>
-          <td>`+estado+`</td>
+          <td id=est-`+nroFactura+`>`+estado+`</td>
           <td>
             <button type="button" class="btn btn-success boton-pago" id=`+nroFactura+`>Marcar Pagado</button>
           </td>     </tr>    `);
@@ -181,8 +181,8 @@ $(document).on('click', '.boton-pago', function() {
       success: function(response) {
         alert(response);
         console.log(response);
-        $("#estPago"+numeroFact).text("Liberado");
-        $("#estPago"+numeroFact).addClass('fondo-verde');
+        $("#est-"+numeroFact).text("Liberado");
+        $("#est-"+numeroFact).addClass('fondo-verde');
         $("#"+numeroFact).attr('disabled', 'disabled');
       //  $('#'+numeroFact).addClass('invisible');
       }
