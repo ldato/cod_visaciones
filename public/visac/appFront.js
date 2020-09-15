@@ -50,7 +50,7 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
           } else {
             $("#boton-entrega").attr('disabled', 'disabled');
           }
-          if (estado=="Entregado") {
+          if (estado=="Entregado" || estado=="Pendiente de pago") {
             $("#fecha_entrega").append(fecha_actualizacion);
             $("#boton-entrega").addClass('invisible');
           }
@@ -80,6 +80,9 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
             "ImpTotal": importeTot
           }
         ),
+        beforeSend:function(){
+          return confirm("Esta seguro de marcar entregado la factura nro: "+numeroFact);
+       },
         success: function(response) {
           alert(response);
           console.log(response);
