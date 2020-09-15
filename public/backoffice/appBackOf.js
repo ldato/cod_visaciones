@@ -96,7 +96,7 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
           fecha = result[i].Fecha;
           nombre = result[i].Nombre;
           cantidad = result[i].CantCert;
-          total = result[i].ImpTotal;
+          total = '$'+result[i].ImpTotal;
           estado = result[i].Estado;
           $("#tabla1").append(`      <tr>  <td id=nroFact`+nroFactura+`>`+nroFactura+`</td>
           <td id=nomEmp`+nroFactura+`>`+nombre+`</td>
