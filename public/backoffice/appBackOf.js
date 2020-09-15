@@ -160,7 +160,7 @@ $(document).on('click', '.boton-pago', function() {
   let cantidadx = $("#cant"+numeroFact).text();
   let totalx = $("#total"+numeroFact).text();
   let nomEmp1 = $("#nomEmp"+numeroFact).text();
-  $(this).attr('disabled', 'disabled');
+  //$(this).attr('disabled', 'disabled');
   console.log(numeroFact);
   console.log(nomEmp1);
   $.ajax({
@@ -183,6 +183,7 @@ $(document).on('click', '.boton-pago', function() {
         console.log(response);
         $("#estPago"+numeroFact).text("Liberado");
         $("#estPago"+numeroFact).addClass('fondo-verde');
+        $(this).attr('disabled', 'disabled');
       //  $('#'+numeroFact).addClass('invisible');
       }
 
