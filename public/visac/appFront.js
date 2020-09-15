@@ -81,7 +81,7 @@ $(document).ready(function() { //INICIO DOCUMENT.READY
           }
         ),
         beforeSend:function(){
-          return confirm("Esta seguro de marcar entregado la factura nro: "+numeroFact);
+          return confirm("Esta seguro de marcar entregado la factura nro: "+numero1);
        },
         success: function(response) {
           alert(response);
