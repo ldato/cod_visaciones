@@ -41,7 +41,7 @@ var df = XLSX.utils.sheet_to_json(workbook.Sheets[sheetNames[sheetIndex-1]]);
             'Liberado'
         FROM
         CONT_VISAC.dbo.Trx_Visac1
-             WHERE numero = @numero;`).then(function (resp) {
+             WHERE NroFact = @numero;`).then(function (resp) {
             console.log("Se ha cambio es el estado de la factura nro: "+nro.NroFactura);
             //res.send("Se ha cambio es el estado de la factura nro: "+factNro);
             dbConn.close();
