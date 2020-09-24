@@ -34,7 +34,7 @@ var df = XLSX.utils.sheet_to_json(workbook.Sheets[sheetNames[sheetIndex-1]]);
         request.query(`INSERT INTO CONT_VISAC.dbo.Trx_Visac1 (NroFact, Fecha, Nombre, CantCert, ImpTotal, Estado) 
         SELECT
             NroFact,
-            FORMAT (GETDATE(), 'dd/MM/yyyy HH:mm:ss') AS Fecha,
+            GETDATE(),
             Nombre,
             CantCert,
             ImpTotal,
