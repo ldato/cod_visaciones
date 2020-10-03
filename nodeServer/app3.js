@@ -59,7 +59,7 @@ app.get("/facturas", function(req , res){
             AND VTRMVI_CODFOR IN ('FC0002', 'FC0003')
             AND VTRMVI_TIPPRO =  'VISAC'
             AND VTRMVH_SUCURS=0002
-            AND VTRMVH_FCHMOV >= DATEADD(day, -15, getdate())
+            AND VTRMVH_FCHMOV >= DATEADD(day, -30, getdate())
             AND C.VTRMVH_CODFOR = A.VTRMVI_CODFOR
             AND CONT_VISAC.dbo.Trx_Visac1.NroFact is null
             --AND USR_FCRMVI_NROCER !=''
