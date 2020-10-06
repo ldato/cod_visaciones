@@ -26,11 +26,11 @@ app.use(function(req, res, next) {
 var dbConfig = {
     user:  "sistvisac",
     password: "Cac.2020",
-    server: "10.0.220.33\\SOFTLAND",
+    server: "10.0.220.33",
     database: "CAC",
     options: {
       port: 1433,
-    //  instancename: 'SQLEXPRESS',
+      instancename: 'SOFTLAND',
       encrypt: false
     }
 };
