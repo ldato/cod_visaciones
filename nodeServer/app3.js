@@ -39,9 +39,9 @@ var dbConfig = {
 //GET API----------------------------------------------------------------
 app.get("/facturas", function(req , res){
   var dbConn = new sql.ConnectionPool(dbConfig);
-  dbConn.connect().then(function () {
+  dbConn.connect().then(async function () {
       var request = new sql.Request(dbConn);
-      request.query(`INSERT INTO CONT_VISAC.dbo.Trx_Visac1 (NroFact, Fecha, Nombre, CantCert, ImpTotal)
+      await request.query(`INSERT INTO CONT_VISAC.dbo.Trx_Visac1 (NroFact, Fecha, Nombre, CantCert, ImpTotal)
       SELECT  C.VTRMVH_NROFOR, FORMAT(VTRMVH_FECMOD, 'dd/MM/yyyy HH:mm:ss')AS FECHA , E.VTMCLH_NOMBRE,
       CAST(SUM(VTRMVI_CANTID) AS INT) AS cantXprod,
       CAST(SUM (VTRMVI_PRENAC * VTRMVI_CANTID) AS INT) AS totXprod
