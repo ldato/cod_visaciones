@@ -1,0 +1,48 @@
+2020-09-30 14:56:13 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\adm_ldato\AppData\Roaming\npm\node_modules\node-windows\lib\wrapper.js --file C:\SistVisac\cod_visaciones\nodeServer\app3.js --scriptoptions= --log "Node application as Windows Service wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2020-09-30 14:56:13 - Started 56700
+2020-10-03 09:40:10 - Stopping nodeapplicationaswindowsservice.exe
+2020-10-03 09:40:10 - ProcessKill 56700
+2020-10-03 09:40:10 - Found child process: 59484 Name: conhost.exe
+2020-10-03 09:40:10 - Found child process: 18560 Name: node.exe
+2020-10-03 09:40:10 - Stopping process 59484
+2020-10-03 09:40:10 - Send SIGINT 59484
+2020-10-03 09:40:10 - SIGINT to 59484 failed - Killing as fallback
+2020-10-03 09:40:10 - Stopping process 18560
+2020-10-03 09:40:10 - Send SIGINT 18560
+2020-10-03 09:40:10 - SIGINT to 18560 failed - Killing as fallback
+2020-10-03 09:40:10 - Stopping process 56700
+2020-10-03 09:40:10 - Send SIGINT 56700
+2020-10-03 09:40:10 - SIGINT to 56700 failed - Killing as fallback
+2020-10-03 09:40:10 - Finished nodeapplicationaswindowsservice.exe
+2020-10-03 09:40:25 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\adm_ldato\AppData\Roaming\npm\node_modules\node-windows\lib\wrapper.js --file C:\SistVisac\cod_visaciones\nodeServer\app3.js --scriptoptions= --log "Node application as Windows Service wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2020-10-03 09:40:26 - Started 14232
+2020-10-06 14:39:38 - Stopping nodeapplicationaswindowsservice.exe
+2020-10-06 14:39:38 - ProcessKill 14232
+2020-10-06 14:39:38 - Found child process: 56940 Name: conhost.exe
+2020-10-06 14:39:38 - Found child process: 60820 Name: node.exe
+2020-10-06 14:39:38 - Stopping process 56940
+2020-10-06 14:39:38 - Send SIGINT 56940
+2020-10-06 14:39:38 - SIGINT to 56940 failed - Killing as fallback
+2020-10-06 14:39:38 - Stopping process 60820
+2020-10-06 14:39:38 - Send SIGINT 60820
+2020-10-06 14:39:38 - SIGINT to 60820 failed - Killing as fallback
+2020-10-06 14:39:38 - Stopping process 14232
+2020-10-06 14:39:38 - Send SIGINT 14232
+2020-10-06 14:39:38 - SIGINT to 14232 failed - Killing as fallback
+2020-10-06 14:39:38 - Finished nodeapplicationaswindowsservice.exe
+2020-10-06 14:39:55 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\adm_ldato\AppData\Roaming\npm\node_modules\node-windows\lib\wrapper.js --file C:\SistVisac\cod_visaciones\nodeServer\app3.js --scriptoptions= --log "Node application as Windows Service wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2020-10-06 14:39:55 - Started 60756
+2020-10-06 14:43:46 - Stopping nodeapplicationaswindowsservice.exe
+2020-10-06 14:43:46 - ProcessKill 60756
+2020-10-06 14:43:47 - Found child process: 62736 Name: conhost.exe
+2020-10-06 14:43:47 - Found child process: 51216 Name: node.exe
+2020-10-06 14:43:47 - Stopping process 62736
+2020-10-06 14:43:47 - Send SIGINT 62736
+2020-10-06 14:43:47 - SIGINT to 62736 failed - Killing as fallback
+2020-10-06 14:43:47 - Stopping process 51216
+2020-10-06 14:43:47 - Send SIGINT 51216
+2020-10-06 14:43:47 - SIGINT to 51216 failed - Killing as fallback
+2020-10-06 14:43:47 - Stopping process 60756
+2020-10-06 14:43:47 - Send SIGINT 60756
+2020-10-06 14:43:47 - SIGINT to 60756 failed - Killing as fallback
+2020-10-06 14:43:47 - Finished nodeapplicationaswindowsservice.exe
