@@ -22,7 +22,7 @@ var df = XLSX.utils.sheet_to_json(workbook.Sheets[sheetNames[sheetIndex-1]]);
     console.log(nro.NroFactura);
     factNro = nro.NroFactura;*/
     var dbConn = new sql.ConnectionPool(dbConfig);
-    dbConn.connect().then(function () {
+    dbConn.connect().then(async function () {
         //var request = new sql.Request(dbConn);
         //var factNro;
         for (let nro of df){
@@ -31,7 +31,7 @@ var df = XLSX.utils.sheet_to_json(workbook.Sheets[sheetNames[sheetIndex-1]]);
             //factNro = nro.NroFactura;
       //  var arrayNumero = [numero];
         request.input(`numero`, nro.NroFactura);
-        request.query(`INSERT INTO CONT_VISAC.dbo.Trx_Visac1 (NroFact, Fecha, Nombre, CantCert, ImpTotal, Estado) 
+        await request.query(`INSERT INTO CONT_VISAC.dbo.Trx_Visac1 (NroFact, Fecha, Nombre, CantCert, ImpTotal, Estado) 
         SELECT
             NroFact,
             GETDATE(),
@@ -44,7 +44,8 @@ var df = XLSX.utils.sheet_to_json(workbook.Sheets[sheetNames[sheetIndex-1]]);
              WHERE NroFact = @numero;`).then(function (resp) {
             console.log("Se ha cambio es el estado de la factura nro: "+nro.NroFactura);
             //res.send("Se ha cambio es el estado de la factura nro: "+factNro);
-            dbConn.close();
+            
   });
   };
+  dbConn.close();
 })

@@ -42,29 +42,24 @@ app.get("/facturas", function(req , res){
   dbConn.connect().then(async function () {
       var request = new sql.Request(dbConn);
       await request.query(`INSERT INTO CONT_VISAC.dbo.Trx_Visac1 (NroFact, Fecha, Nombre, CantCert, ImpTotal)
-      SELECT  C.VTRMVH_NROFOR, VTRMVH_FECMOD, E.VTMCLH_NOMBRE,
-      CAST(SUM(VTRMVI_CANTID) AS INT) AS cantXprod,
-      CAST(SUM (VTRMVI_PRENAC * VTRMVI_CANTID) AS INT) AS totXprod
+      SELECT A.VTRMVI_NROFOR, VTRMVH_FECMOD, C.VTMCLH_NOMBRE,
+     CAST(SUM(VTRMVI_CANTID) as int ) AS Cantidad,
+     CAST(SUM(VTRMVI_IMPNAC) as int) AS totXprod
             FROM VTRMVI A
-            INNER JOIN STMPDH B
-            ON A.VTRMVI_ARTCOD = B.STMPDH_ARTCOD
-            INNER JOIN VTRMVH C
-            ON C.VTRMVH_NROFOR = A.VTRMVI_NROFOR
-            INNER JOIN FCRMVI D
-            ON C.VTRMVH_NROFOR = D.FCRMVI_NROFOR
-            INNER JOIN VTMCLH E
-            ON E.VTMCLH_NROCTA = C.VTRMVH_NROCTA
-            left join CONT_VISAC.dbo.Trx_Visac1 on (CONT_VISAC.dbo.Trx_Visac1.NroFact = C.VTRMVH_NROFOR)
+            LEFT JOIN VTRMVH B
+            ON B.VTRMVH_NROFOR = A.VTRMVI_NROFOR
+            INNER JOIN VTMCLH C
+            ON C.VTMCLH_NROCTA = B.VTRMVH_NROCTA
+            LEFT JOIN CONT_VISAC.dbo.Trx_Visac1
+			ON CONT_VISAC.dbo.Trx_Visac1.NroFact = A.VTRMVI_NROFOR
             WHERE VTRMVI_CODEMP = 'CAC01'
             AND VTRMVI_CODFOR IN ('FC0002', 'FC0003')
             AND VTRMVI_TIPPRO =  'VISAC'
             AND VTRMVH_SUCURS=0002
             AND VTRMVH_FCHMOV >= DATEADD(day, -30, getdate())
-            AND C.VTRMVH_CODFOR = A.VTRMVI_CODFOR
-            AND CONT_VISAC.dbo.Trx_Visac1.NroFact is null
-            --AND USR_FCRMVI_NROCER !=''
-            GROUP BY  C.VTRMVH_NROFOR, VTRMVH_FECMOD,E.VTMCLH_NOMBRE, STMPDH_DESCRP,VTRMVI_CANTID
-            ORDER BY VTRMVH_NROFOR DESC;`).then(function (resp) {
+			AND CONT_VISAC.dbo.Trx_Visac1.NroFact is null
+            GROUP BY  VTRMVI_NROFOR, VTRMVH_FECMOD, VTMCLH_NOMBRE
+            ORDER BY VTRMVI_NROFOR DESC;`).then(function (resp) {
       //    console.log(resp);
       //    res.send(resp);
           dbConn.close();
