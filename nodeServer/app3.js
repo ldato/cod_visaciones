@@ -24,13 +24,13 @@ app.use(function(req, res, next) {
 
  //Initializing connection string
 var dbConfig = {
-    user:  "sistvisac",
-    password: "Cac.2020",
-    server: "10.0.220.33",
-    database: "CAC",
+    user:  "",
+    password: "",
+    server: "",
+    database: "",
     options: {
       port: 1433,
-      instancename: 'SOFTLAND',
+      instancename: '',
       encrypt: false
     }
 };
