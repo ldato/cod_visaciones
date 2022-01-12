@@ -13,19 +13,19 @@ app.use(bodyParser.json());
 // var puerto = nro_puerto;
 
 var con = sql.connect({
-  /* host: "10.0.220.33",
-  user: "sa",
-  password: "Softland@1",
-  database: "CAC_TST" */
-  //host: "10.0.220.33",
+  /* host: "",
+  user: "",
+  password: "",
+  database: "" */
+  //host: ",
   user: 'sa',
-  password: 'acevedo535',
-  server: 'DESKTOP-0S2D3E7',
+  password: '',
+  server: '',
 
   options: {
-       port: 3001,
-       database: 'prueba',
-       instancename: 'SQLEXPRESS',
+       port: ,
+       database: '',
+       instancename: '',
        
      }
 });
